@@ -1,0 +1,24 @@
+.centeredPanel {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0.5, 0.0, 0.0);
+}
+
+.centeredPanel .credentialsPanel {
+    -fx-background-color: #282828;
+    -fx-background-radius: 5px 0 0 5px;
+}
+
+.centeredPanel .instructionsPanel {
+    -fx-background-color: #4a8e24;
+    -fx-background-radius: 0 5px 5px 0;
+}
+
+.centeredPanel .credentialsPanel .switchPrompt:hover {
+    -fx-text-fill: #ffffff;
+    -fx-underline: true;
+}
+
+.styledButton:pressed {
+    -fx-background-color: #4a8e24;
+    -fx-border-color: #4a8e24;
+    -fx-effect: dropshadow(gaussian, rgba(74, 142, 36, 0.4), 3, 0.5, 0.0, 0.0);
+}

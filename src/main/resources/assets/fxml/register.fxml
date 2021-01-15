@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="364.0" prefWidth="664.0" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.itsstuttgart.chessclient.controllers.RegisterController">
+   <children>
+      <AnchorPane layoutX="152.0" layoutY="62.0" prefHeight="240.0" prefWidth="360.0" styleClass="centeredPanel" AnchorPane.bottomAnchor="62.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="62.0">
+         <children>
+            <Pane prefHeight="240.0" prefWidth="180.0" styleClass="credentialsPanel" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button layoutX="22.0" layoutY="199.0" mnemonicParsing="false" onAction="#register" prefHeight="27.0" prefWidth="137.0" text="Registrieren">
+                     <styleClass>
+                        <String fx:value="styledButton" />
+                        <String fx:value="menuField" />
+                     </styleClass>
+                  </Button>
+                  <TextField fx:id="username" layoutX="22.0" layoutY="38.0" prefHeight="27.0" prefWidth="137.0" styleClass="menuField" />
+                  <Label layoutX="22.0" layoutY="19.0" text="Benutzername" textFill="#e5e5e5" />
+                  <PasswordField fx:id="password" layoutX="22.0" layoutY="88.0" prefHeight="27.0" prefWidth="137.0" styleClass="menuField" />
+                  <Label layoutX="22.0" layoutY="70.0" text="Passwort" textFill="#e5e5e5" />
+                  <Label layoutX="22.0" layoutY="171.0" text="Du hast bereits einen Account?" textFill="#e5e5e5">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="22.0" layoutY="183.0" onMouseClicked="#switchToLogin" styleClass="switchPrompt" text="Anmelden" textFill="#dddddd">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="repeatPassword" layoutX="22.0" layoutY="140.0" prefHeight="27.0" prefWidth="137.0" styleClass="menuField" />
+                  <Label layoutX="22.0" layoutY="122.0" text="Passwort wiederholen" textFill="#e5e5e5" />
+               </children></Pane>
+            <Pane layoutX="180.0" prefHeight="240.0" prefWidth="180.0" styleClass="instructionsPanel" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" text="Registrierung" textFill="#f8f8f8">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_LEFT" layoutX="18.0" layoutY="41.0" prefHeight="186.0" prefWidth="147.0"
+                         textAlignment="JUSTIFY" textFill="#eeeeee" wrapText="true" >
+                     <text>
+                        Bitte legen Sie sich hier einen neuen Account an, um mit all ihren Freunden Online Schach spielen zu können!
+                        Ihre Daten werden Verschlüsselt auf unserem Server gespeichert.
+                     </text>
+                  </Label>
+               </children></Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
