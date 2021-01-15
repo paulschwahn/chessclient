@@ -1,5 +1,6 @@
 package de.itsstuttgart.chessclient;
 
+import de.itsstuttgart.chessclient.connection.Connection;
 import de.itsstuttgart.chessclient.controllers.WindowController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +33,8 @@ public class ChessClient extends Application {
      */
     public WindowController windowController;
 
+    public Connection connection;
+
     /**
      * JavaFX Entry Point
      *
@@ -40,6 +43,8 @@ public class ChessClient extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         instance = this;
+
+        this.connection = new Connection("localhost", 53729);
 
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setTitle("Chess");

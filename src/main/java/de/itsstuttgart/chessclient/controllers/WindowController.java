@@ -48,6 +48,7 @@ public class WindowController {
 
     public void requestShutdown(MouseEvent mouseEvent) {
         Platform.exit();
+        ChessClient.instance.connection.disconnect();
     }
 
     public void changePane(Parent newPane) {
