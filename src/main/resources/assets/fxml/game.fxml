@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="364.0" prefWidth="664.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.itsstuttgart.chessclient.chess.BoardController">
+   <children>
+      <Canvas fx:id="canvasBoard" height="336.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#selectPiece" width="336.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+   </children>
+</AnchorPane>

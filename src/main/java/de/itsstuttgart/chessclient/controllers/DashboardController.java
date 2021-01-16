@@ -20,6 +20,8 @@ public class DashboardController {
 
     @FXML
     public void initialize() {
+        ChessClient.instance.windowController.lastSubController = this;
+
         this.welcomeMessage.setText("Willkommen, " + ChessClient.instance.connection.username);
 
         // Init Online Player List

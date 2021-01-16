@@ -43,6 +43,7 @@ public class Connection implements Runnable {
             this.pingThread = new Thread(() -> {
                 while (this.isConnected()) {
                     try {
+                        //noinspection BusyWait
                         Thread.sleep(5000L);
                     } catch (InterruptedException e) {
                         e.printStackTrace();

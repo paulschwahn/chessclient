@@ -18,8 +18,7 @@ public class LoginSuccessPacket implements Packet {
 
     @Override
     public void process(byte[] data) {
-        String username = ByteUtils.readString(data, 2, ByteUtils.readShort(data, 0));
-        ChessClient.instance.connection.username = username;
+        ChessClient.instance.connection.username = ByteUtils.readString(data, 2, ByteUtils.readShort(data, 0));
         Platform.runLater(() -> {
             try {
                 Parent dashboard = FXMLLoader.load(this.getClass().getResource("/assets/fxml/dashboard.fxml"));

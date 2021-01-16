@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="364.0" prefWidth="664.0" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.itsstuttgart.chessclient.controllers.LoginController">
+<AnchorPane prefHeight="364.0" prefWidth="664.0" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.itsstuttgart.chessclient.controllers.LoginController">
    <children>
       <AnchorPane layoutX="152.0" layoutY="62.0" prefHeight="240.0" prefWidth="360.0" styleClass="centeredPanel" AnchorPane.bottomAnchor="62.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="62.0">
          <children>

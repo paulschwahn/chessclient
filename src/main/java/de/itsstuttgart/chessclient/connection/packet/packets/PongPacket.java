@@ -10,6 +10,7 @@ import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * created by paul on 01.02.20 at 15:06
@@ -25,20 +26,36 @@ public class PongPacket implements Packet {
             int length = ByteUtils.readInteger(data, pointer);
             pointer += DataType.getSize(DataType.INTEGER);
 
-            List<String> players = new ArrayList<>();
+            List<UUID> players = new ArrayList<>();
 
             for (int i = 0; i < length; i++) {
+                long msbUUID = ByteUtils.readLong(data, pointer);
+                pointer += DataType.getSize(DataType.LONG);
+                long lsbUUID = ByteUtils.readLong(data, pointer);
+                pointer += DataType.getSize(DataType.LONG);
+                UUID playerIdentifier = new UUID(msbUUID, lsbUUID);
+
                 short nameLength = ByteUtils.readShort(data, pointer);
                 pointer += DataType.getSize(DataType.SHORT);
                 String name = ByteUtils.readString(data, pointer, nameLength);
                 pointer += nameLength;
+                byte flags = ByteUtils.readByte(data, pointer);
+                pointer += DataType.getSize(DataType.BYTE);
 
-                if (ChessClient.instance.connection.players.stream().noneMatch(p -> p.getPlayerName().equals(name)))
-                    ChessClient.instance.connection.players.add(new OnlinePlayer(name));
-                players.add(name);
+                System.out.println(playerIdentifier + ", " + name + " > " + Integer.toBinaryString(flags & 0xff).replace(' ', '0'));
+
+                if (ChessClient.instance.connection.players.stream().noneMatch(p -> p.getPlayerIdentifier().equals(playerIdentifier)))
+                    ChessClient.instance.connection.players.add(new OnlinePlayer(playerIdentifier, name));
+
+                // update flags
+                ChessClient.instance.connection.players.stream()
+                        .filter(p -> p.getPlayerIdentifier().equals(playerIdentifier))
+                        .forEach(p -> p.setFlags(flags));
+
+                players.add(playerIdentifier);
             }
 
-            ChessClient.instance.connection.players.removeIf(p -> players.stream().noneMatch(s -> s.equals(p.getPlayerName())));
+            ChessClient.instance.connection.players.removeIf(p -> players.stream().noneMatch(s -> s.equals(p.getPlayerIdentifier())));
         });
     }
 }

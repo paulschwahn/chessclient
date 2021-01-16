@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -27,6 +28,10 @@ public class WindowController {
     private double xOffset = 0;
     private double yOffset = 0;
 
+    // Chess Request
+    public AnchorPane chessRequest;
+    public Label inviteMessage;
+
     public Object lastSubController;
 
     @FXML
@@ -44,11 +49,11 @@ public class WindowController {
             this.titleBar.getScene().getWindow().setY(event.getScreenY() - this.yOffset);
         });
 
-        Parent loginPane = FXMLLoader.load(this.getClass().getResource("/assets/fxml/login.fxml"));
+        Parent loginPane = FXMLLoader.load(this.getClass().getResource("/assets/fxml/game.fxml"));
         this.changePane(loginPane);
     }
 
-    public void requestShutdown(MouseEvent mouseEvent) {
+    public void requestShutdown(MouseEvent event) {
         Platform.exit();
         ChessClient.instance.connection.disconnect();
     }
@@ -56,5 +61,15 @@ public class WindowController {
     public void changePane(Parent newPane) {
         this.content.getChildren().clear();
         this.content.getChildren().add(newPane);
+    }
+
+    @FXML
+    public void acceptMatch(MouseEvent event) {
+        this.chessRequest.setVisible(false);
+    }
+
+    @FXML
+    public void declineMatch(MouseEvent event) {
+        this.chessRequest.setVisible(false);
     }
 }

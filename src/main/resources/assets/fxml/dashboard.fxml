@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="364.0" prefWidth="664.0" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.itsstuttgart.chessclient.controllers.DashboardController">
+<AnchorPane prefHeight="364.0" prefWidth="664.0" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.itsstuttgart.chessclient.controllers.DashboardController">
    <children>
       <Label fx:id="welcomeMessage" layoutX="14.0" layoutY="14.0" text="Willkommen," textFill="#e8e8e8">
          <font>

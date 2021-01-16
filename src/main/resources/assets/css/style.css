@@ -51,3 +51,31 @@
 .styledButton:pressed {
     -fx-background-color: #1d1d1d;
 }
+
+/* Accept Match Dialog */
+.chessRequest {
+    -fx-background-color: #232323;
+    -fx-background-radius: 5px;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #1d1d1d;
+    -fx-effect: dropshadow(gaussian, rgba(29, 29, 29, 0.4), 3, 0.5, 0.0, 0.0);
+}
+
+.chessRequest .accept {
+    -fx-background-color: #4a8e24;
+    -fx-background-radius: 0 0 0 5px;
+}
+
+.chessRequest .accept:hover {
+    -fx-background-color: #75ce3c;
+}
+
+.chessRequest .decline {
+    -fx-background-color: #c64035;
+    -fx-background-radius: 0 0 5px 0;
+}
+
+.chessRequest .decline:hover {
+    -fx-background-color: #ff5f57;
+}

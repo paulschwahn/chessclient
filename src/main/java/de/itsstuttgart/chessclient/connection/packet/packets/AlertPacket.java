@@ -11,7 +11,7 @@ import javafx.scene.control.Alert;
 @PacketHeader({0x61, 0x6c})
 public class AlertPacket implements Packet {
 
-    public static final Alert[] alertMessages = new Alert[2];
+    public static final Alert[] alertMessages = new Alert[3];
 
     static {
         // Register user already exists
@@ -21,17 +21,21 @@ public class AlertPacket implements Packet {
         alertMessages[0].setContentText("Der Benutzername ist bereits vergeben!");
 
         // Invalid credentials
-        alertMessages[1] = new Alert(Alert.AlertType.ERROR);
+        alertMessages[1] = new Alert(Alert.AlertType.WARNING);
         alertMessages[1].setTitle("Anmeldung");
         alertMessages[1].setHeaderText("Fehler bei der Anmeldung!");
         alertMessages[1].setContentText("Ungültiger Benutzername oder Passwort!");
+
+        // User disconnected
+        alertMessages[2] = new Alert(Alert.AlertType.INFORMATION);
+        alertMessages[2].setTitle("Herausforderung");
+        alertMessages[2].setHeaderText("Fehler bei der Spielinitialisierung");
+        alertMessages[2].setContentText("Der Spieler hat das Programm geschlossen.");
     }
 
     @Override
     public void process(byte[] data) {
         byte messageType = data[0];
-        Platform.runLater(() -> {
-            alertMessages[messageType].showAndWait();
-        });
+        Platform.runLater(() -> alertMessages[messageType].showAndWait());
     }
 }

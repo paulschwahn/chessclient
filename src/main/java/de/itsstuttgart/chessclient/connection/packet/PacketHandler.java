@@ -1,9 +1,6 @@
 package de.itsstuttgart.chessclient.connection.packet;
 
-import de.itsstuttgart.chessclient.connection.packet.packets.AlertPacket;
-import de.itsstuttgart.chessclient.connection.packet.packets.LoginSuccessPacket;
-import de.itsstuttgart.chessclient.connection.packet.packets.PongPacket;
-import de.itsstuttgart.chessclient.connection.packet.packets.RegisterSuccessPacket;
+import de.itsstuttgart.chessclient.connection.packet.packets.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +18,7 @@ public class PacketHandler {
         this.processablePackets.add(new AlertPacket());
         this.processablePackets.add(new RegisterSuccessPacket());
         this.processablePackets.add(new LoginSuccessPacket());
+        this.processablePackets.add(new ChallengePacket());
     }
 
     public List<Packet> getProcessablePackets() {
@@ -32,10 +30,10 @@ public class PacketHandler {
             byte[] header = p.getClass().getAnnotation(PacketHeader.class).value();
 
             if (packet.length >= header.length) {
-                boolean validPacket = false;
+                boolean validPacket = true;
                 for (int i = 0; i < header.length; i++) {
-                    if (header[i] == packet[i]) {
-                        validPacket = true;
+                    if (header[i] != packet[i]) {
+                        validPacket = false;
                         break;
                     }
                 }

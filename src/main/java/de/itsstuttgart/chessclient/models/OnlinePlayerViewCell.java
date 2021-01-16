@@ -1,6 +1,8 @@
 package de.itsstuttgart.chessclient.models;
 
 import de.itsstuttgart.chessclient.ChessClient;
+import de.itsstuttgart.chessclient.util.ByteUtils;
+import de.itsstuttgart.chessclient.util.DataType;
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListCell;
@@ -16,7 +18,15 @@ public class OnlinePlayerViewCell extends ListCell<OnlinePlayer> {
         MenuItem challengeItem = new MenuItem();
         challengeItem.textProperty().bind(Bindings.format("%s herausfordern", textProperty()));
         challengeItem.setOnAction(event -> {
+            OnlinePlayer player = itemProperty().get();
+            byte[] challenge = new byte[2 + DataType.getSize(DataType.LONG) * 2];
+            int pointer = 0;
+            pointer = ByteUtils.writeBytes(challenge, pointer, (byte) 0x63);
+            pointer = ByteUtils.writeBytes(challenge, pointer, (byte) 0x2b);
+            pointer = ByteUtils.writeBytes(challenge, pointer, player.getPlayerIdentifier().getMostSignificantBits());
+            ByteUtils.writeBytes(challenge, pointer, player.getPlayerIdentifier().getLeastSignificantBits());
 
+            ChessClient.instance.connection.send(challenge);
         });
         contextMenu.getItems().add(challengeItem);
 
@@ -37,8 +47,12 @@ public class OnlinePlayerViewCell extends ListCell<OnlinePlayer> {
             setText(null);
             setContextMenu(null);
         } else {
-            if (!item.getPlayerName().equals(ChessClient.instance.connection.username)) {
-                setText(item.getPlayerName());
+            if (!item.isSelf()) {
+                if (item.isInGame()) {
+                    setText(item.getPlayerName() + " (Im Spiel)");
+                } else {
+                    setText(item.getPlayerName());
+                }
             } else {
                 setContextMenu(null);
                 setText(item.getPlayerName() + " (Sie)");

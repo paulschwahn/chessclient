@@ -7,15 +7,22 @@
 <AnchorPane prefHeight="438.0" prefWidth="712.0" styleClass="shadowPane" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.itsstuttgart.chessclient.controllers.WindowController">
     <AnchorPane layoutX="33.0" layoutY="24.0" prefHeight="390.0" prefWidth="663.0" styleClass="rootPane" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="24.0">
         <AnchorPane fx:id="titleBar" styleClass="titlebar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <children>
-                <Label layoutX="3.0" prefHeight="26.0" text="Schach CT Projekt" textFill="#d0d0d0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="0.0">
-                    <font>
-                        <Font name="Arial" size="12.0" />
-                    </font>
-                </Label>
-                <Pane layoutX="547.0" layoutY="5.0" onMouseClicked="#requestShutdown" prefHeight="12.0" prefWidth="12.0" styleClass="closeButton" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0" />
-            </children>
+            <Label layoutX="3.0" prefHeight="26.0" text="Schach CT Projekt" textFill="#d0d0d0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="0.0">
+                <font>
+                    <Font name="Arial" size="12.0" />
+                </font>
+            </Label>
+            <Pane layoutX="547.0" layoutY="5.0" onMouseClicked="#requestShutdown" prefHeight="12.0" prefWidth="12.0" styleClass="closeButton" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0" />
         </AnchorPane>
-      <Pane fx:id="content" layoutY="26.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0" />
+        <Pane fx:id="content" layoutY="26.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0" />
+        <AnchorPane fx:id="chessRequest" maxWidth="200.0" prefHeight="70.0" prefWidth="200.0" styleClass="chessRequest" visible="false" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="30.0">
+            <Label fx:id="inviteMessage" layoutX="7.0" layoutY="7.0" prefHeight="40.0" prefWidth="185.0" text="hat sie zu einer Patrie Schach eingeladen" textFill="#dddddd" wrapText="true" />
+            <Pane onMouseClicked="#acceptMatch" prefHeight="20.0" prefWidth="100.0" styleClass="accept" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                <Label alignment="CENTER" prefHeight="20.0" prefWidth="100.0" text="Annehmen" textAlignment="CENTER" textFill="#e2e2e2" />
+            </Pane>
+            <Pane onMouseClicked="#declineMatch" prefHeight="20.0" prefWidth="100.0" styleClass="decline" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                <Label alignment="CENTER" prefHeight="20.0" prefWidth="100.0" text="Ablehnen" textAlignment="CENTER" textFill="#e2e2e2" />
+            </Pane>
+        </AnchorPane>
     </AnchorPane>
 </AnchorPane>

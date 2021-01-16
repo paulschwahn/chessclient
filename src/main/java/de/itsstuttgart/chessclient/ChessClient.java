@@ -2,6 +2,7 @@ package de.itsstuttgart.chessclient;
 
 import de.itsstuttgart.chessclient.connection.Connection;
 import de.itsstuttgart.chessclient.controllers.WindowController;
+import de.itsstuttgart.chessclient.util.ThemeManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -35,6 +36,8 @@ public class ChessClient extends Application {
 
     public Connection connection;
 
+    public ThemeManager themeManager;
+
     /**
      * JavaFX Entry Point
      *
@@ -45,6 +48,7 @@ public class ChessClient extends Application {
         instance = this;
 
         this.connection = new Connection("localhost", 53729);
+        this.themeManager = new ThemeManager();
 
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setTitle("Chess");
