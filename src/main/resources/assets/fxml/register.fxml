@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="364.0" prefWidth="664.0" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.itsstuttgart.chessclient.controllers.RegisterController">
    <children>
-      <AnchorPane layoutX="152.0" layoutY="62.0" prefHeight="240.0" prefWidth="360.0" styleClass="centeredPanel" AnchorPane.bottomAnchor="62.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="62.0">
+      <AnchorPane fx:id="registerPanel" layoutX="152.0" layoutY="62.0" prefHeight="240.0" prefWidth="360.0" styleClass="centeredPanel" AnchorPane.bottomAnchor="62.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="62.0">
          <children>
             <Pane prefHeight="240.0" prefWidth="180.0" styleClass="credentialsPanel" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -41,14 +41,27 @@
                         <Font size="21.0" />
                      </font>
                   </Label>
-                  <Label alignment="TOP_LEFT" layoutX="18.0" layoutY="41.0" prefHeight="186.0" prefWidth="147.0"
-                         textAlignment="JUSTIFY" textFill="#eeeeee" wrapText="true" >
+                  <Label alignment="TOP_LEFT" layoutX="18.0" layoutY="41.0" prefHeight="186.0" prefWidth="147.0" textAlignment="JUSTIFY" textFill="#eeeeee" wrapText="true">
                      <text>
                         Bitte legen Sie sich hier einen neuen Account an, um mit all ihren Freunden Online Schach spielen zu können!
                         Ihre Daten werden Verschlüsselt auf unserem Server gespeichert.
                      </text>
                   </Label>
                </children></Pane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="registerSuccess" layoutX="152.0" layoutY="62.0" prefHeight="240.0" prefWidth="360.0" visible="false">
+         <styleClass>
+            <String fx:value="centeredPanel" />
+            <String fx:value="successPanel" />
+         </styleClass>
+         <children>
+            <Label layoutX="59.0" layoutY="85.0" text="Registrierung erfolgreich!" textFill="#fcfcfc">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="118.0" layoutY="120.0" onMouseClicked="#switchToLogin" styleClass="switchPrompt" text="Zurück zur Anmeldung" textFill="#dadada" />
          </children>
       </AnchorPane>
    </children>

@@ -12,7 +12,7 @@
     -fx-background-radius: 0 5px 5px 0;
 }
 
-.centeredPanel .credentialsPanel .switchPrompt:hover {
+.switchPrompt:hover {
     -fx-text-fill: #ffffff;
     -fx-underline: true;
 }
@@ -21,4 +21,9 @@
     -fx-background-color: #4a8e24;
     -fx-border-color: #4a8e24;
     -fx-effect: dropshadow(gaussian, rgba(74, 142, 36, 0.4), 3, 0.5, 0.0, 0.0);
+}
+
+.successPanel {
+    -fx-background-color: #4a8e24;
+    -fx-background-radius: 5px 5px 5px 5px;
 }

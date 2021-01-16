@@ -27,6 +27,8 @@ public class WindowController {
     private double xOffset = 0;
     private double yOffset = 0;
 
+    public Object lastSubController;
+
     @FXML
     public void initialize() throws IOException {
         // Set Instance

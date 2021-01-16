@@ -1,8 +1,11 @@
 package de.itsstuttgart.chessclient.connection;
 
 import de.itsstuttgart.chessclient.connection.packet.PacketHandler;
+import de.itsstuttgart.chessclient.models.OnlinePlayer;
 import de.itsstuttgart.chessclient.util.ByteUtils;
 import de.itsstuttgart.chessclient.util.DataType;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.*;
 import java.net.Socket;
@@ -20,6 +23,10 @@ public class Connection implements Runnable {
     public BufferedInputStream inputStream;
     public BufferedOutputStream outputStream;
 
+    // Client variables
+    public String username;
+    public ObservableList<OnlinePlayer> players;
+
     public Connection(String ip, int port) {
         try {
             this.socket = new Socket(ip, port);
@@ -31,6 +38,7 @@ public class Connection implements Runnable {
             this.receiveThread.start();
 
             this.packetHandler = new PacketHandler();
+            this.players = FXCollections.observableArrayList();
 
             this.pingThread = new Thread(() -> {
                 while (this.isConnected()) {
@@ -76,6 +84,7 @@ public class Connection implements Runnable {
             }
         } catch (Exception e) {
             // TODO: Auto reconnect
+            e.printStackTrace();
         }
     }
 
@@ -92,6 +101,7 @@ public class Connection implements Runnable {
             this.outputStream.flush();
         } catch (Exception e) {
             // TODO: Auto reconnect
+            e.printStackTrace();
         }
     }
 
