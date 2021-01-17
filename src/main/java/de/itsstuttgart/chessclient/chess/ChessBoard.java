@@ -52,6 +52,7 @@ public class ChessBoard {
      */
     public ChessBoard(String fen) {
         fromFEN(fen);
+        System.out.println(this.getFEN());
         this.mySide = Side.WHITE;
     }
 
@@ -177,6 +178,44 @@ public class ChessBoard {
                 }
             }
         }
+    }
+
+
+    /**
+     * TODO: Actually fill missing FEN data
+     *
+     * @return Forsyth Edwards Notation
+     */
+    public String getFEN() {
+        StringBuilder fen = new StringBuilder();
+
+        for (int row = 0; row < 8; row++) {
+            int movesSinceLastPiece = 0;
+            for (int col = 0; col < 8; col++) {
+                ChessPiece piece = this.getPiece(col, row);
+                if (piece == null)
+                    movesSinceLastPiece++;
+                else {
+                    if (movesSinceLastPiece > 0) fen.append(movesSinceLastPiece);
+                    movesSinceLastPiece = 0;
+                    fen.append(piece.toFEN());
+                }
+            }
+            if (movesSinceLastPiece > 0) fen.append(movesSinceLastPiece);
+            if (row < 7)
+                fen.append("/");
+        }
+        fen.append(" ");
+        fen.append(this.nextMove.getFen());
+        fen.append(" ");
+        fen.append("KQkq");
+        fen.append(" ");
+        fen.append("-");
+        fen.append(" ");
+        fen.append("0");
+        fen.append(" ");
+        fen.append("1");
+        return fen.toString();
     }
 
     public void click(GraphicsContext gc, double squareSize, int dCol, int dRow) {

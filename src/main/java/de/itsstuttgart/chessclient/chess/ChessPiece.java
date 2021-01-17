@@ -211,6 +211,20 @@ public abstract class ChessPiece {
         return null;
     }
 
+    public char toFEN() {
+        char let = 'x';
+        if (this instanceof Pawn) let = 'p';
+        if (this instanceof Knight) let = 'n';
+        if (this instanceof Bishop) let = 'b';
+        if (this instanceof Rook) let = 'r';
+        if (this instanceof Queen) let = 'q';
+        if (this instanceof King) let = 'k';
+        if (this.side == Side.WHITE)
+            let = Character.toUpperCase(let);
+
+        return let;
+    }
+
     public void setColumn(int col) {
         this.col = col;
     }

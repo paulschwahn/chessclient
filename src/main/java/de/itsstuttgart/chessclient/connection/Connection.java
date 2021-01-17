@@ -1,6 +1,7 @@
 package de.itsstuttgart.chessclient.connection;
 
 import de.itsstuttgart.chessclient.ChessClient;
+import de.itsstuttgart.chessclient.chess.ChessBoard;
 import de.itsstuttgart.chessclient.connection.packet.PacketHandler;
 import de.itsstuttgart.chessclient.models.OnlinePlayer;
 import de.itsstuttgart.chessclient.util.ByteUtils;
@@ -154,13 +155,15 @@ public class Connection implements Runnable {
      */
     public void finishGame(FinishReason reason) {
         if (ChessClient.instance.board != null) {
-            UUID identifier = ChessClient.instance.board.getBoardIdentifier();
-            byte[] finish = new byte[2 + DataType.getSize(DataType.LONG) * 2 + 1];
+            ChessBoard board = ChessClient.instance.board;
+            UUID identifier = board.getBoardIdentifier();
+            byte[] finish = new byte[2 + DataType.getSize(DataType.LONG) * 2 + 1 + DataType.getSize(DataType.SHORT) + board.getFEN().length()];
             finish[0] = 0x2a;
             finish[1] = 0x66;
             ByteUtils.writeBytes(finish, 2, identifier.getMostSignificantBits());
             ByteUtils.writeBytes(finish, 10, identifier.getLeastSignificantBits());
             finish[18] = reason.getReason();
+            ByteUtils.writeBytes(finish, 19, board.getFEN());
             this.send(finish);
         }
     }
