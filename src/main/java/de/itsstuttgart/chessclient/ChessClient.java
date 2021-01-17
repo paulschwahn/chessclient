@@ -51,7 +51,7 @@ public class ChessClient extends Application {
     public void start(Stage primaryStage) throws Exception {
         instance = this;
 
-        this.connection = new Connection("localhost", 53729);
+        this.connection = new Connection("performance.vertex.sh", 53729);
         this.themeManager = new ThemeManager();
 
         primaryStage.initStyle(StageStyle.TRANSPARENT);
