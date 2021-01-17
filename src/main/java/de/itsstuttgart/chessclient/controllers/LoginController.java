@@ -62,7 +62,7 @@ public class LoginController {
      * @param event event information
      */
     public void switchToRegister(MouseEvent event) throws IOException {
-        Parent loginPane = FXMLLoader.load(this.getClass().getResource("/assets/fxml/register.fxml"));
-        ChessClient.instance.windowController.changePane(loginPane);
+        Parent registerPane = FXMLLoader.load(this.getClass().getResource("/assets/fxml/register.fxml"));
+        ChessClient.instance.windowController.changePane(registerPane);
     }
 }

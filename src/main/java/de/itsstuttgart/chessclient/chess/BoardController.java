@@ -68,7 +68,7 @@ public class BoardController {
     }
 
     public void toDashboard(ActionEvent event) throws IOException {
-        Parent loginPane = FXMLLoader.load(this.getClass().getResource("/assets/fxml/dashboard.fxml"));
-        ChessClient.instance.windowController.changePane(loginPane);
+        Parent dashboard = FXMLLoader.load(this.getClass().getResource("/assets/fxml/dashboard.fxml"));
+        ChessClient.instance.windowController.changePane(dashboard);
     }
 }

@@ -33,8 +33,8 @@ public class MatchStartPacket implements Packet {
         ChessClient.instance.board = new ChessBoard(matchIdentifier, side);
         Platform.runLater(() -> {
             try {
-                Parent loginPane = FXMLLoader.load(this.getClass().getResource("/assets/fxml/game.fxml"));
-                ChessClient.instance.windowController.changePane(loginPane);
+                Parent gameBoard = FXMLLoader.load(this.getClass().getResource("/assets/fxml/game.fxml"));
+                ChessClient.instance.windowController.changePane(gameBoard);
             } catch (IOException e) {
                 e.printStackTrace();
             }

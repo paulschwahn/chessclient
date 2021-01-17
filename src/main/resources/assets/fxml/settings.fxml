@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="364.0" prefWidth="664.0" stylesheets="@../css/settings.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.itsstuttgart.chessclient.controllers.SettingsController">
+   <children>
+      <Label layoutX="20.0" layoutY="28.0" text="Aussehen" textFill="#e8e8e8" />
+      <ChoiceBox fx:id="themeSelector" layoutX="14.0" layoutY="45.0" prefWidth="150.0">
+         <styleClass>
+            <String fx:value="menuField" />
+            <String fx:value="themeSelect" />
+         </styleClass></ChoiceBox>
+      <Canvas fx:id="preview" height="100.0" layoutX="14.0" layoutY="100.0" width="100.0" />
+      <Label layoutX="20.0" layoutY="83.0" text="Vorschau" textFill="#e8e8e8" />
+      <Button layoutX="14.0" layoutY="323.0" mnemonicParsing="false" onAction="#goBack" text="Zurück">
+         <styleClass>
+            <String fx:value="menuField" />
+            <String fx:value="styledButton" />
+         </styleClass>
+      </Button>
+   </children>
+</AnchorPane>

@@ -1,0 +1,25 @@
+
+.themeSelect {
+    -fx-text-fill: #e5e5e5;
+    -fx-mark-color: #4a8e24;
+}
+
+.themeSelect .context-menu {
+    -fx-border-width: 0;
+}
+
+.themeSelect > .label {
+    -fx-text-fill: #e5e5e5;
+}
+
+.themeSelect .menu-item:hover {
+    -fx-background-color: #75ce3c;
+}
+
+.themeSelect .menu-item:focused {
+    -fx-background-color: #4a8e24;
+}
+
+.themeSelect .menu-item > .label {
+    -fx-text-fill: #e5e5e5;
+}

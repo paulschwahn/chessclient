@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="364.0" prefWidth="664.0" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.itsstuttgart.chessclient.controllers.DashboardController">
+<AnchorPane prefHeight="364.0" prefWidth="664.0" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.itsstuttgart.chessclient.controllers.DashboardController">
    <children>
       <Label fx:id="welcomeMessage" layoutX="14.0" layoutY="14.0" text="Willkommen," textFill="#e8e8e8">
          <font>
@@ -13,5 +14,11 @@
       </Label>
       <ListView fx:id="onlineList" layoutX="450.0" layoutY="31.0" prefHeight="321.0" prefWidth="200.0" styleClass="onlineList" />
       <Label layoutX="450.0" layoutY="12.0" text="Ebenfalls online" textFill="#e8e8e8" />
+      <Button layoutX="351.0" layoutY="323.0" mnemonicParsing="false" onAction="#switchToSettings" text="Einstellungen">
+         <styleClass>
+            <String fx:value="menuField" />
+            <String fx:value="styledButton" />
+         </styleClass>
+      </Button>
    </children>
 </AnchorPane>
