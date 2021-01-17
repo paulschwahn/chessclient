@@ -89,7 +89,7 @@ public class ChessBoard {
     public void drawBoard(GraphicsContext gc, double squareSize) {
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
-                Paint color = (((this.mySide == Side.BLACK ? 1 : 0) + x + y) % 2 == 1) ? new Color(0.11372549019, 0.11372549019, 0.11372549019, 1) : new Color(0.83529411764, 0.83529411764, 0.83529411764, 1);
+                Paint color = ((x + y) % 2 == 1) ? new Color(0.11372549019, 0.11372549019, 0.11372549019, 1) : new Color(0.83529411764, 0.83529411764, 0.83529411764, 1);
                 gc.setFill(color);
                 gc.fillRect(x * squareSize, y * squareSize, squareSize, squareSize);
             }
