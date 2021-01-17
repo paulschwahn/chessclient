@@ -65,6 +65,25 @@ public abstract class ChessPiece {
     }
 
     /**
+     * Converts this pieces location to a byte value
+     *
+     * col  row
+     * 0000 0000
+     *
+     * Example for g5 (col 6, row 3):
+     * 0110 0011
+     * -> 0x63,
+     *
+     * this leads to the hex representation being an accurate display for the pieces position
+     * while only taking up 1 byte of space
+     *
+     * @return positional byte
+     */
+    public byte getLocation() {
+        return (byte)((this.col & 0xf) | (this.row << 4 & 0xf0));
+    }
+
+    /**
      * Checks if there is a clear path between this piece and the given location
      *
      * @param col location column
@@ -190,5 +209,13 @@ public abstract class ChessPiece {
                 return new King(side, col, row);
         }
         return null;
+    }
+
+    public void setColumn(int col) {
+        this.col = col;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
     }
 }

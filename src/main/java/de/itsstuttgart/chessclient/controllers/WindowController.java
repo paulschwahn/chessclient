@@ -1,6 +1,8 @@
 package de.itsstuttgart.chessclient.controllers;
 
 import de.itsstuttgart.chessclient.ChessClient;
+import de.itsstuttgart.chessclient.util.ByteUtils;
+import de.itsstuttgart.chessclient.util.DataType;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+import java.util.UUID;
 
 /**
  * created by paul on 15.01.21 at 12:13
@@ -49,7 +52,7 @@ public class WindowController {
             this.titleBar.getScene().getWindow().setY(event.getScreenY() - this.yOffset);
         });
 
-        Parent loginPane = FXMLLoader.load(this.getClass().getResource("/assets/fxml/game.fxml"));
+        Parent loginPane = FXMLLoader.load(this.getClass().getResource("/assets/fxml/login.fxml"));
         this.changePane(loginPane);
     }
 
@@ -66,10 +69,12 @@ public class WindowController {
     @FXML
     public void acceptMatch(MouseEvent event) {
         this.chessRequest.setVisible(false);
+        ChessClient.instance.connection.challengeCallback(true);
     }
 
     @FXML
     public void declineMatch(MouseEvent event) {
         this.chessRequest.setVisible(false);
+        ChessClient.instance.connection.challengeCallback(false);
     }
 }

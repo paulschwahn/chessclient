@@ -1,10 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="364.0" prefWidth="664.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.itsstuttgart.chessclient.chess.BoardController">
-   <children>
-      <Canvas fx:id="canvasBoard" height="336.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#selectPiece" width="336.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
-   </children>
+<AnchorPane prefHeight="364.0" prefWidth="664.0" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.itsstuttgart.chessclient.chess.BoardController">
+   <Canvas fx:id="canvasBoard" height="336.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#selectPiece" width="336.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+   <Label fx:id="opponentName" layoutX="364.0" layoutY="20.0" styleClass="playerName" text="p1" textFill="#e8e8e8" />
+   <Label fx:id="selfName" layoutX="364.0" layoutY="333.0" styleClass="playerName" text="p2" textFill="#e8e8e8" />
+   <Button fx:id="resignButton" layoutX="550.0" layoutY="320.0" mnemonicParsing="false" onAction="#resign" prefHeight="27.0" prefWidth="103.0" text="Aufgeben">
+      <styleClass>
+         <String fx:value="menuField" />
+         <String fx:value="styledButton" />
+      </styleClass></Button>
+   <AnchorPane fx:id="gameFinished" layoutX="187.0" layoutY="105.0" prefHeight="154.0" prefWidth="291.0" styleClass="completedPane" visible="false">
+      <children>
+         <AnchorPane prefHeight="60.0" styleClass="typePanel" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+               <Label fx:id="winText" alignment="CENTER" layoutY="15.0" text="win_text" textFill="#e4e4e4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <font>
+                     <Font size="26.0" />
+                  </font>
+               </Label>
+            </children>
+         </AnchorPane>
+         <Label fx:id="winReason" alignment="CENTER" layoutX="131.0" layoutY="69.0" text="win_reason" textFill="#e4e4e4" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+         <Button layoutX="71.0" layoutY="113.0" mnemonicParsing="false" onAction="#toDashboard" text="Zurück zum Hauptmenü">
+            <styleClass>
+               <String fx:value="menuField" />
+               <String fx:value="styledButton" />
+            </styleClass>
+         </Button>
+      </children></AnchorPane>
 </AnchorPane>

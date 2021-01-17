@@ -16,6 +16,7 @@ public enum Side {
         this.imageAddon = imageAddon;
     }
 
+
     public String getFen() {
         return fen;
     }
@@ -30,5 +31,9 @@ public enum Side {
 
     public static Side fromCase(boolean upperCase) {
         return upperCase ? WHITE : BLACK;
+    }
+
+    public static Side flip(Side side) {
+        return side == WHITE ? BLACK : WHITE;
     }
 }

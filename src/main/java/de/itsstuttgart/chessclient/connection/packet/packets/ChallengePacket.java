@@ -25,6 +25,7 @@ public class ChallengePacket implements Packet {
         Optional<OnlinePlayer> playerOptional = ChessClient.instance.connection.players.stream().filter(c -> c.getPlayerIdentifier().equals(playerIdentifier)).findFirst();
         if (playerOptional.isPresent()) {
             OnlinePlayer player = playerOptional.get();
+            ChessClient.instance.connection.lastChallenger = player;
 
             Platform.runLater(() -> {
                 ChessClient.instance.windowController.inviteMessage.setText(player.getPlayerName() + " hat sie zu einer Patrie Schach eingeladen!");

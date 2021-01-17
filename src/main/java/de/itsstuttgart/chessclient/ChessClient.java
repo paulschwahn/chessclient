@@ -1,5 +1,6 @@
 package de.itsstuttgart.chessclient;
 
+import de.itsstuttgart.chessclient.chess.ChessBoard;
 import de.itsstuttgart.chessclient.connection.Connection;
 import de.itsstuttgart.chessclient.controllers.WindowController;
 import de.itsstuttgart.chessclient.util.ThemeManager;
@@ -37,6 +38,8 @@ public class ChessClient extends Application {
     public Connection connection;
 
     public ThemeManager themeManager;
+
+    public ChessBoard board;
 
     /**
      * JavaFX Entry Point

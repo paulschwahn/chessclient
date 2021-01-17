@@ -1,6 +1,8 @@
 package de.itsstuttgart.chessclient.connection.packet;
 
 import de.itsstuttgart.chessclient.connection.packet.packets.*;
+import de.itsstuttgart.chessclient.connection.packet.packets.board.BoardFinishPacket;
+import de.itsstuttgart.chessclient.connection.packet.packets.board.BoardMovePacket;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,11 @@ public class PacketHandler {
         this.processablePackets.add(new RegisterSuccessPacket());
         this.processablePackets.add(new LoginSuccessPacket());
         this.processablePackets.add(new ChallengePacket());
+        this.processablePackets.add(new MatchStartPacket());
+
+        // Board
+        this.processablePackets.add(new BoardMovePacket());
+        this.processablePackets.add(new BoardFinishPacket());
     }
 
     public List<Packet> getProcessablePackets() {

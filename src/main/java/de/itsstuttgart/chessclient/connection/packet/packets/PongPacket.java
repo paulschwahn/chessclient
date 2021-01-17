@@ -42,8 +42,6 @@ public class PongPacket implements Packet {
                 byte flags = ByteUtils.readByte(data, pointer);
                 pointer += DataType.getSize(DataType.BYTE);
 
-                System.out.println(playerIdentifier + ", " + name + " > " + Integer.toBinaryString(flags & 0xff).replace(' ', '0'));
-
                 if (ChessClient.instance.connection.players.stream().noneMatch(p -> p.getPlayerIdentifier().equals(playerIdentifier)))
                     ChessClient.instance.connection.players.add(new OnlinePlayer(playerIdentifier, name));
 

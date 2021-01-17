@@ -1,0 +1,19 @@
+/*noinspection ALL*/
+.playerName:turn {
+    -fx-underline: true;
+}
+
+.completedPane {
+    -fx-background-color: #2a2a2a;
+    -fx-background-radius: 5px;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #1d1d1d;
+    -fx-effect: dropshadow(gaussian, rgba(29, 29, 29, 0.4), 3, 0.5, 0.0, 0.0);
+}
+
+.completedPane .typePanel {
+    -fx-background-color: #8ca85e;
+    -fx-background-radius: 5px 5px 0 0;
+    -fx-border-radius: 5px 5px 0 0;
+}

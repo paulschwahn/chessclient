@@ -1,18 +1,22 @@
 package de.itsstuttgart.chessclient.connection;
 
+import de.itsstuttgart.chessclient.ChessClient;
 import de.itsstuttgart.chessclient.connection.packet.PacketHandler;
 import de.itsstuttgart.chessclient.models.OnlinePlayer;
 import de.itsstuttgart.chessclient.util.ByteUtils;
 import de.itsstuttgart.chessclient.util.DataType;
+import de.itsstuttgart.chessclient.util.FinishReason;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.UUID;
 
 /**
  * created by paul on 15.01.21 at 19:15
  */
+@SuppressWarnings("DuplicatedCode")
 public class Connection implements Runnable {
 
     private Socket socket;
@@ -25,6 +29,8 @@ public class Connection implements Runnable {
 
     // Client variables
     public String username;
+    public OnlinePlayer lastChallenger;
+    public String opponentName;
     public ObservableList<OnlinePlayer> players;
 
     public Connection(String ip, int port) {
@@ -102,7 +108,7 @@ public class Connection implements Runnable {
             this.outputStream.flush();
         } catch (Exception e) {
             // TODO: Auto reconnect
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
@@ -114,11 +120,48 @@ public class Connection implements Runnable {
         return this.socket.isConnected() && !this.socket.isClosed() && !this.socket.isInputShutdown() && !this.socket.isOutputShutdown();
     }
 
+    /**
+     * Disconnects the client from the server, called on shutdown
+     */
     public void disconnect() {
         try {
             this.socket.close();
         } catch (IOException e) {
             System.exit(0);
+        }
+    }
+
+    /**
+     * Respond to the latest challenge request
+     *
+     * @param accepted accepted or not
+     */
+    public void challengeCallback(boolean accepted) {
+        UUID challenger = this.lastChallenger.getPlayerIdentifier();
+        byte[] challengeCallback = new byte[2 + DataType.getSize(DataType.LONG) * 2 + 1];
+        challengeCallback[0] = 0x63;
+        challengeCallback[1] = 0x63;
+        ByteUtils.writeBytes(challengeCallback, 2, challenger.getMostSignificantBits());
+        ByteUtils.writeBytes(challengeCallback, 10, challenger.getLeastSignificantBits());
+        challengeCallback[18] = (byte) (accepted ? 0x01 : 0x00);
+        this.send(challengeCallback);
+    }
+
+    /**
+     * Finishes the game with given exit code
+     *
+     * @param reason finish reason
+     */
+    public void finishGame(FinishReason reason) {
+        if (ChessClient.instance.board != null) {
+            UUID identifier = ChessClient.instance.board.getBoardIdentifier();
+            byte[] finish = new byte[2 + DataType.getSize(DataType.LONG) * 2 + 1];
+            finish[0] = 0x2a;
+            finish[1] = 0x66;
+            ByteUtils.writeBytes(finish, 2, identifier.getMostSignificantBits());
+            ByteUtils.writeBytes(finish, 10, identifier.getLeastSignificantBits());
+            finish[18] = reason.getReason();
+            this.send(finish);
         }
     }
 }
