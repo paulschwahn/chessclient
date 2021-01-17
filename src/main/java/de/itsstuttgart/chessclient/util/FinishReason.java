@@ -48,4 +48,8 @@ public enum FinishReason {
     public static FinishReason fromReason(byte reason) {
         return Arrays.stream(values()).filter(s -> s.getReason() == reason).findFirst().orElse(RESIGNATION);
     }
+
+    public boolean isDraw() {
+        return this.drawText != null;
+    }
 }

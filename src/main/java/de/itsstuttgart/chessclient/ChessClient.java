@@ -3,6 +3,7 @@ package de.itsstuttgart.chessclient;
 import de.itsstuttgart.chessclient.chess.ChessBoard;
 import de.itsstuttgart.chessclient.connection.Connection;
 import de.itsstuttgart.chessclient.controllers.WindowController;
+import de.itsstuttgart.chessclient.util.JavaFXUtil;
 import de.itsstuttgart.chessclient.util.ThemeManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -56,6 +57,8 @@ public class ChessClient extends Application {
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setTitle("Chess");
 
+        JavaFXUtil.patchTooltipSpeed();
+
         Parent rootPane = FXMLLoader.load(this.getClass().getResource("/assets/fxml/chess.fxml"));
         Scene mainScene = new Scene(rootPane);
         mainScene.setFill(Color.TRANSPARENT);
@@ -63,6 +66,7 @@ public class ChessClient extends Application {
         primaryStage.addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);
         primaryStage.setScene(mainScene);
         primaryStage.show();
+
     }
 
     /**

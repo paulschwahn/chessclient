@@ -11,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -54,6 +55,17 @@ public class ChessBoard {
         fromFEN(fen);
         System.out.println(this.getFEN());
         this.mySide = Side.WHITE;
+    }
+
+    /**
+     * Creates a new game board with a given FEN and playside
+     *
+     * @param fen Forsyth Edwards Notation
+     */
+    public ChessBoard(String fen, Side mySide) {
+        fromFEN(fen);
+        System.out.println(this.getFEN());
+        this.mySide = mySide;
     }
 
     /**
@@ -168,14 +180,16 @@ public class ChessBoard {
 
         for (int row = 0; row < 8; row++) {
             char[] rowChars = positioning[row].toCharArray();
+            int placeIndex = 0;
 
-            for (int col = 0; col < 8; col++) {
+            for (int col = 0; col < rowChars.length; col++) {
                 char c = rowChars[col];
                 if (Character.isDigit(c)) {
-                    col += Integer.parseInt(Character.toString(c)) - 1;
+                    placeIndex += Integer.parseInt(Character.toString(c)) - 1;
                 } else {
-                    this.board.add(ChessPiece.fromFEN(c, row, col));
+                    this.board.add(ChessPiece.fromFEN(c, row, placeIndex));
                 }
+                placeIndex++;
             }
         }
     }
