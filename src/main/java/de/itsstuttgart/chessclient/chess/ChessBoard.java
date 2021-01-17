@@ -7,7 +7,6 @@ import javafx.scene.paint.Paint;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * created by paul on 16.01.21 at 17:46
@@ -172,5 +171,34 @@ public class ChessBoard {
 
     public void setDisableCheckChecking(boolean disableCheckChecking) {
         this.disableCheckChecking = disableCheckChecking;
+    }
+
+    /**
+     * Checks if a given side has no possible moves left, in addition also checks if the king is currently in check,
+     * otherwise its a stalemate, not a checkmate
+     *
+     * @param side side to check
+     * @return checkmate or not
+     */
+    public boolean isCheckMate(Side side) {
+        boolean inCheck = this.board.stream()
+                .filter(p -> p instanceof King)
+                .anyMatch(p -> this.board.stream()
+                        .filter(m -> m.getSide() != side)
+                        .anyMatch(m -> m.getPossibleMoves(this).stream()
+                                .anyMatch(i -> i[0] == p.getColumn() && i[1] == p.getRow())
+                        )
+                );
+        return inCheck && !canMove(side);
+    }
+
+    /**
+     * Checks if any piece has the ability to move on the board, used for checkmate and stalemate detection
+     *
+     * @param side side to check
+     * @return has moves left or not
+     */
+    public boolean canMove(Side side) {
+        return this.board.stream().filter(p -> p.getSide() == side).allMatch(p -> p.getPossibleMoves(this).size() == 0);
     }
 }
