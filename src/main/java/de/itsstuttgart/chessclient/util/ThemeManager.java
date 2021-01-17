@@ -15,7 +15,7 @@ public class ThemeManager {
     public String currentTheme;
 
     public ThemeManager() {
-        this.currentTheme = "blacknwhite";
+        this.currentTheme = "lichess";
     }
 
     public void setCurrentTheme(String currentTheme) {

@@ -147,7 +147,7 @@ public abstract class ChessPiece {
             boolean invalidMove = board.getBoard()
                     .stream()
                     .filter(p -> p.getSide() != this.side)
-                    .filter(p -> p.getColumn() != this.col || p.getRow() != this.row)
+                    .filter(p -> p.getColumn() != this.col || p.getRow() != this.row) // this allows us the capture the given piece, preventing check
                     .anyMatch(p -> p.getPossibleMoves(board)
                             .stream()
                             .anyMatch(m -> m[0] == king.col && m[1] == king.row)
