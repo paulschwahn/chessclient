@@ -5,6 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * created by paul on 16.01.21 at 17:47
@@ -163,10 +164,13 @@ public abstract class ChessPiece {
             int oldRow = this.row;
             this.col = move[0];
             this.row = move[1];
-            boolean invalidMove = board.getBoard()
+            ChessPiece take = board.getPiece(this.col, this.row);
+            List<ChessPiece> shallowCopy = new ArrayList<>(board.getBoard());
+            if (take != null)
+                shallowCopy.remove(take);
+            boolean invalidMove = shallowCopy
                     .stream()
                     .filter(p -> p.getSide() != this.side)
-                    .filter(p -> p.getColumn() != this.col || p.getRow() != this.row) // this allows us the capture the given piece, preventing check
                     .anyMatch(p -> p.getPossibleMoves(board)
                             .stream()
                             .anyMatch(m -> m[0] == king.col && m[1] == king.row)
