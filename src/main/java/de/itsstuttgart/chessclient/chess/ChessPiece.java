@@ -162,16 +162,20 @@ public abstract class ChessPiece {
         for (int[] move : moves) {
             int oldCol = this.col;
             int oldRow = this.row;
-            this.col = move[0];
-            this.row = move[1];
-            ChessPiece take = board.getPiece(this.col, this.row);
+            ChessPiece take = board.getPiece(move[0], move[1]);
             List<ChessPiece> shallowCopy = new ArrayList<>(board.getBoard());
             if (take != null)
                 shallowCopy.remove(take);
+            this.col = move[0];
+            this.row = move[1];
+
+            ChessBoard copy = new ChessBoard(shallowCopy, board.getMySide());
+            copy.setDisableCheckChecking(true);
+
             boolean invalidMove = shallowCopy
                     .stream()
                     .filter(p -> p.getSide() != this.side)
-                    .anyMatch(p -> p.getPossibleMoves(board)
+                    .anyMatch(p -> p.getPossibleMoves(copy)
                             .stream()
                             .anyMatch(m -> m[0] == king.col && m[1] == king.row)
                     );

@@ -31,22 +31,20 @@ public class Pawn extends ChessPiece {
         boolean firstMove = (getSide() == Side.WHITE) ? this.getChessRow() == 2 : this.getChessRow() == 7;
 
         int forward = (getSide() == Side.WHITE) ? this.row - 1 : this.row + 1;
-        if (!board.isDisableCheckChecking()) {
-            if (!board.hasPiece(col, forward) && inBounds(col, forward))
-                moves.add(new int[] {col, forward});
+        if (!board.hasPiece(col, forward) && inBounds(col, forward))
+            moves.add(new int[]{col, forward});
 
-            if (firstMove) {
-                int first = (getSide() == Side.WHITE) ? this.row - 2 : this.row + 2;
-                if (!board.hasPiece(col, forward) && !board.hasPiece(col, first) && inBounds(col, first))
-                    moves.add(new int[] {col, first});
-            }
+        if (firstMove) {
+            int first = (getSide() == Side.WHITE) ? this.row - 2 : this.row + 2;
+            if (!board.hasPiece(col, forward) && !board.hasPiece(col, first) && inBounds(col, first))
+                moves.add(new int[]{col, first});
         }
 
         if (inBounds(col - 1, forward) && board.hasPiece(col - 1, forward) && board.getPiece(col - 1, forward).getSide() != this.side)
-            moves.add(new int[] {col - 1, forward});
+            moves.add(new int[]{col - 1, forward});
 
         if (inBounds(col + 1, forward) && board.hasPiece(col + 1, forward) && board.getPiece(col + 1, forward).getSide() != this.side)
-            moves.add(new int[] {col + 1, forward});
+            moves.add(new int[]{col + 1, forward});
 
         return cleanChecks(moves, board);
     }
